@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey Mahi, You’re Amazing! 🌸</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Minimalist and Calming Styles */
+        body {
+            background: linear-gradient(to bottom right, #e6e6fa, #ffe5d9, #d4f1f4);
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        h1, h2 {
+            font-weight: 300;
+            color: #6b7280;
+        }
+        button {
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+        @keyframes confettiFall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #fff, 0 0 10px #f9a8d4; }
+            50% { text-shadow: 0 0 10px #fff, 0 0 20px #f9a8d4; }
+            100% { text-shadow: 0 0 5px #fff, 0 0 10px #f9a8d4; }
+        }
+        @keyframes slideIn {
+            0% { transform: translateX(-100%); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes sway {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(5deg); }
+            100% { transform: rotate(0deg); }
+        }
+        .float { animation: float 3s ease-in-out infinite; }
+        .bounce-in { animation: bounceIn 1s ease-out; }
+        .confetti {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            opacity: 0.8;
+            animation: confettiFall 4s linear infinite;
+        }
+        .glow { animation: glow 2s infinite; }
+        .slide-in { animation: slideIn 0.5s ease-out; }
+        .pulse { animation: pulse 2s infinite; }
+        .fade-in { animation: fadeIn 1s ease-in; }
+        .sway { animation: sway 4s ease-in-out infinite; }
+        .gallery-img { transition: transform 0.3s ease; }
+        .gallery-img:hover { transform: scale(1.05); }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 1000; }
+        .modal-content { position: relative; margin: 10% auto; width: 90%; max-width: 500px; }
+        .notification { position: fixed; top: 10px; right: 10px; z-index: 2000; }
+        .hidden { display: none; }
+        #canvas { border: 1px solid #d1d5db; background: #fff; border-radius: 10px; }
+
+        /* Responsive Adjustments */
+        @media (max-width: 640px) {
+            .container { padding: 4px; margin: 4px; max-width: 100%; }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.25rem; }
+            .text-3xl { font-size: 1.125rem; }
+            .float { width: 40px; height: 40px; }
+            button { padding: 8px 16px; font-size: 0.875rem; }
+            .gallery-img { width: 100%; height: auto; }
+            .grid-cols-3 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+            #happy-place, #canvas { width: 100%; height: 200px; }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Main Container -->
+    <div class="container mx-auto p-6 sm:p-4 max-w-4xl mt-8 mb-8">
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <h1 class="text-5xl sm:text-4xl font-light text-gray-700 glow mb-4">Hey Mahi, You’re Amazing! 🌸</h1>
+            <p class="text-xl sm:text-lg text-gray-600">A Little Space to Brighten Your Day!</p>
+        </header>
+
+        <!-- Uplifting Message -->
+        <section class="text-center mb-10">
+            <h2 class="text-3xl font-light text-gray-600 mb-4">You’re a Star, Mahi!</h2>
+            <p class="text-lg sm:text-base text-gray-500 max-w-2xl mx-auto">
+                Tough days don’t dim your shine. Relax, enjoy, and let this little corner wrap you in a big, warm hug!
+            </p>
+        </section>
+
+        <!-- Floating Hearts -->
+        <section class="flex justify-center space-x-6 sm:space-x-2 mb-10 flex-wrap gap-4">
+            <i class="fas fa-heart text-pink-400 text-3xl sm:text-2xl float" style="animation-delay: 0s;"></i>
+            <i class="fas fa-heart text-orange-300 text-3xl sm:text-2xl float" style="animation-delay: 1s;"></i>
+            <i class="fas fa-heart text-teal-300 text-3xl sm:text-2xl float" style="animation-delay: 2s;"></i>
+        </section>
+
+        <!-- Photo Gallery -->
+        <section class="mb-10">
+            <h2 class="text-3xl font-light text-gray-600 text-center mb-6">Your Happy Moments</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <img src="https://i.pinimg.com/736x/5d/dc/91/5ddc91348677e6440275ad5150f07cdb.jpg" alt="Smiling You" class="gallery-img rounded-lg">
+                <img src="https://i.pinimg.com/736x/93/06/fd/9306fd8a743deef671de7e54a148041c.jpg" alt="Sunny Day" class="gallery-img rounded-lg">
+                <img src="https://i.pinimg.com/736x/0f/fc/05/0ffc05c3b01672013def9a67ef1c9f7b.jpg" alt="Besties" class="gallery-img rounded-lg">
+            </div>
+        </section>
+
+        <!-- Positivity Jar -->
+        <section class="mb-10 text-center">
+            <h2 class="text-3xl font-light text-gray-600 mb-4">Pick a Happy Note</h2>
+            <button id="jar-btn" class="bg-pink-300 text-white font-light py-3 px-6 rounded-full hover:bg-pink-400">Open the Jar</button>
+            <p id="jar-message" class="mt-4 text-gray-600 text-lg sm:text-base hidden"></p>
+        </section>
+
+        <!-- Mahi’s Happy Place -->
+        <section class="mb-10 text-center">
+            <h2 class="text-3xl font-light text-gray-600 mb-4">Mahi’s Happy Place</h2>
+            <div id="happy-place" class="relative w-96 h-64 sm:w-full sm:h-48 mx-auto bg-teal-100 rounded-lg overflow-hidden">
+                <i class="fas fa-cloud text-white text-4xl sm:text-3xl absolute top-4 left-8 float" style="animation-delay: 0s;"></i>
+                <i class="fas fa-cloud text-white text-3xl sm:text-2xl absolute top-8 right-12 float" style="animation-delay: 1s;"></i>
+                <i class="fas fa-sun text-yellow-300 text-5xl sm:text-4xl absolute top-2 right-4 sway"></i>
+                <div class="absolute bottom-0 w-full h-16 bg-green-200"></div>
+                <i class="fas fa-tree text-green-400 text-4xl sm:text-3xl absolute bottom-4 left-8 sway" style="animation-delay: 0s;"></i>
+                <i class="fas fa-tree text-green-500 text-3xl sm:text-2xl absolute bottom-4 right-12 sway" style="animation-delay: 1s;"></i>
+                <button id="add-flower" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-pink-300 text-white font-light py-1 px-3 rounded-full hover:bg-pink-400">Add Flower</button>
+            </div>
+        </section>
+
+        <!-- Rainbow Painter -->
+        <section class="mb-10 text-center">
+            <h2 class="text-3xl font-light text-gray-600 mb-4">Paint a Rainbow</h2>
+            <canvas id="canvas" width="400" height="300" class="sm:w-full sm:h-48 mx-auto"></canvas>
+            <div class="mt-4 flex justify-center space-x-4 sm:space-x-2">
+                <button id="color-pink" class="w-8 h-8 bg-pink-400 rounded-full"></button>
+                <button id="color-mint" class="w-8 h-8 bg-teal-300 rounded-full"></button>
+                <button id="color-peach" class="w-8 h-8 bg-orange-300 rounded-full"></button>
+                <button id="clear-canvas" class="bg-gray-300 text-white font-light py-2 px-4 rounded-full hover:bg-gray-400">Clear</button>
+            </div>
+        </section>
+
+        <!-- Simple Game: Catch the Star -->
+        <section class="mb-10 text-center">
+            <h2 class="text-3xl font-light text-gray-600 mb-4">Catch a Star!</h2>
+            <div id="star-game" class="relative w-64 h-64 sm:w-48 sm:h-48 mx-auto bg-gray-100 rounded-lg">
+                <i id="star" class="fas fa-star text-yellow-400 text-3xl sm:text-2xl absolute cursor-pointer" style="top: 50%; left: 50%; transform: translate(-50%, -50%);"></i>
+            </div>
+            <p id="star-score" class="mt-4 text-gray-600 text-lg sm:text-base">Score: 0</p>
+        </section>
+
+        <!-- Celebrate Button -->
+        <section class="text-center mb-10">
+            <button id="confetti-btn" class="bg-peach-300 text-white font-light py-4 px-8 sm:py-3 sm:px-6 rounded-full hover:bg-peach-400 pulse">
+                <i class="fas fa-heart mr-2"></i> Sprinkle Some Joy!
+            </button>
+        </section>
+
+       
+        
+    </div>
+
+    <!-- Modal for Gallery Images -->
+    <div id="gallery-modal" class="modal">
+        <div class="modal-content bg-white p-6 sm:p-4 rounded-lg">
+            <span id="close-modal" class="absolute top-2 right-2 text-2xl text-gray-600 cursor-pointer hover:text-gray-800">×</span>
+            <img id="modal-image" src="" alt="Modal Image" class="w-full rounded-lg">
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    <!-- JavaScript -->
+    <script>
+        $(document).ready(function() {
+            // Fade In Container
+            $('.container').hide().fadeIn(1500);
+
+            // Confetti Effect
+            function createConfetti() {
+                const colors = ['#f9a8d4', '#a7f3d0', '#fed7aa', '#d8b4fe'];
+                for (let i = 0; i < 200; i++) {
+                    const confetti = $('<div class="confetti"></div>').css({
+                        left: Math.random() * 100 + 'vw',
+                        background: colors[Math.floor(Math.random() * colors.length)],
+                        animationDuration: (Math.random() * 2 + 2) + 's',
+                        animationDelay: (Math.random() * 1) + 's'
+                    });
+                    $('body').append(confetti);
+                    setTimeout(() => confetti.remove(), 4000);
+                }
+            }
+            $('#confetti-btn').click(function() {
+                createConfetti();
+                $(this).text('Joy Sprinkled!').addClass('animate-pulse');
+                setTimeout(() => $(this).text('Sprinkle Some Joy!').removeClass('animate-pulse'), 2000);
+                showNotification('Feel the happiness! 🌟');
+            });
+
+            // Gallery Modal
+            $('.gallery-img').click(function() {
+                $('#modal-image').attr('src', $(this).attr('src'));
+                $('#gallery-modal').fadeIn(300);
+            });
+            $('#close-modal').click(() => $('#gallery-modal').fadeOut(300));
+
+            // Positivity Jar
+            const positiveMessages = [
+                "You’re tougher than the toughest days, Mahi!",
+                "Your smile is pure sunshine.",
+                "You make every moment brighter.",
+                "You’re a queen, even when you’re resting!",
+                "The world is better with you in it."
+            ];
+            $('#jar-btn').click(function() {
+                const message = positiveMessages[Math.floor(Math.random() * positiveMessages.length)];
+                $('#jar-message').text(message).removeClass('hidden').addClass('fade-in');
+                showNotification('A little sunshine for you! 🌸');
+            });
+
+            // Mahi’s Happy Place
+            let flowerCount = 0;
+            $('#add-flower').click(function() {
+                if (flowerCount < 5) {
+                    const flower = $('<i class="fas fa-flower text-pink-400 text-2xl sm:text-xl absolute float"></i>')
+                        .css({
+                            bottom: '20px',
+                            left: `${20 + flowerCount * 20}%`,
+                            animationDelay: `${flowerCount * 0.5}s`
+                        });
+                    $('#happy-place').append(flower);
+                    flowerCount++;
+                    showNotification('A flower for your happy place! 🌷');
+                } else {
+                    showNotification('Your garden’s full of love! 🌺');
+                }
+            });
+
+            // Rainbow Painter
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            let painting = false;
+            let color = '#f9a8d4'; // Default pink
+
+            function startPosition(e) {
+                painting = true;
+                draw(e);
+            }
+            function endPosition() {
+                painting = false;
+                ctx.beginPath();
+            }
+            function draw(e) {
+                if (!painting) return;
+                const rect = canvas.getBoundingClientRect();
+                const x = (e.clientX || e.touches[0].clientX) - rect.left;
+                const y = (e.clientY || e.touches[0].clientY) - rect.top;
+                ctx.lineWidth = 5;
+                ctx.lineCap = 'round';
+                ctx.strokeStyle = color;
+                ctx.lineTo(x, y);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+            }
+
+            canvas.addEventListener('mousedown', startPosition);
+            canvas.addEventListener('mouseup', endPosition);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('touchstart', startPosition);
+            canvas.addEventListener('touchend', endPosition);
+            canvas.addEventListener('touchmove', draw);
+
+            $('#color-pink').click(() => color = '#f9a8d4');
+            $('#color-mint').click(() => color = '#a7f3d0');
+            $('#color-peach').click(() => color = '#fed7aa');
+            $('#clear-canvas').click(() => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                showNotification('Fresh canvas for your rainbow! 🌈');
+            });
+
+            // Star Catching Game
+            let score = 0;
+            function moveStar() {
+                const gameArea = $('#star-game');
+                const maxX = gameArea.width() - 40;
+                const maxY = gameArea.height() - 40;
+                const newX = Math.random() * maxX;
+                const newY = Math.random() * maxY;
+                $('#star').css({ top: newY + 'px', left: newX + 'px' });
+            }
+            $('#star').click(function() {
+                score++;
+                $('#star-score').text(`Score: ${score}`);
+                moveStar();
+                showNotification('Caught a star! 🌟');
+            });
+            setInterval(moveStar, 2000);
+
+            // Notification System
+            function showNotification(message, bgColor = 'bg-pink-400') {
+                const notification = $(`<div class="p-3 sm:p-2 ${bgColor} text-white rounded-lg shadow-lg text-sm">${message}</div>`).hide();
+                $('#notification').html(notification);
+                notification.fadeIn(300).delay(2000).fadeOut(300, () => notification.remove());
+            }
+
+            // Scroll Animations
+            $(window).scroll(function() {
+                $('.slide-in').each(function() {
+                    const top = $(this).offset().top;
+                    const windowBottom = $(window).scrollTop() + $(window).height();
+                    if (top < windowBottom && !$(this).hasClass('active')) {
+                        $(this).addClass('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
